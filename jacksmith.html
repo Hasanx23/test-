@@ -5,6 +5,7 @@
   <title>Jacksmith</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Ruffle -->
   <script src="https://xxsibxx.github.io/ruffleembedsetup112/ruffle/ruffle.js"></script>
 
   <style>
@@ -17,32 +18,47 @@
       overflow: hidden;
     }
 
+    /* Oyunun orijinal boyutu: 750x600 */
     #game-wrapper {
       position: absolute;
+      width: 750px;
+      height: 600px;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw;
-      height: 100vh;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transform-origin: top left;
     }
 
     embed {
-      /* Orijinal oyun oranı: 750 / 600 = 1.25 */
-      aspect-ratio: 1.25;
-      height: 100vh; /* Yüksekliğe göre büyüt */
-      max-height: 100vh;
-      max-width: 100vw;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   </style>
 </head>
-
 <body>
   <div id="game-wrapper">
-    <embed src="jacksmith.swf" type="application/x-shockwave-flash">
+    <embed
+      src="jacksmith.swf"
+      type="application/x-shockwave-flash">
   </div>
+
+  <script>
+    const GAME_WIDTH = 750;
+    const GAME_HEIGHT = 600;
+
+    function resizeGame() {
+      const ww = window.innerWidth;
+      const wh = window.innerHeight;
+
+      // Ekrana sığacak en büyük ölçeği hesapla
+      const scale = Math.min(ww / GAME_WIDTH, wh / GAME_HEIGHT);
+
+      const wrapper = document.getElementById('game-wrapper');
+      wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+
+    window.addEventListener('load', resizeGame);
+    window.addEventListener('resize', resizeGame);
+  </script>
 </body>
 </html>
