@@ -14,19 +14,33 @@
       padding: 0;
       background: #000;
       height: 100%;
+      width: 100%;
+    }
+
+    #game-wrapper {
+      width: 100vw;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
+    /* Oyunu ekrana göre büyütüp küçültüyoruz */
+    embed {
+      /* 90vmin = ekranın kısa kenarının %90'ı */
+      width: 90vmin;
+      /* Jacksmith yaklaşık 750x600 (oran ~1.25), ona göre yükseklik ayarladım */
+      height: 72vmin;
+    }
   </style>
 </head>
 <body>
-  <div class="swf" dir="ltr" style="text-align: left;">
-    <embed
-      src="jacksmith.swf"
-      width="750"
-      height="600"
-      type="application/x-shockwave-flash">
+  <div id="game-wrapper">
+    <div class="swf" dir="ltr" style="text-align: left;">
+      <embed
+        src="jacksmith.swf"
+        type="application/x-shockwave-flash">
+    </div>
   </div>
 </body>
 </html>
