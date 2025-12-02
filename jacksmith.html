@@ -23,9 +23,13 @@
       position: absolute;
       width: 750px;
       height: 600px;
+      position: fixed;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
       transform-origin: top left;
+      width: 750px;
+      height: 600px;
     }
 
     embed {
@@ -53,8 +57,13 @@
       // Ekrana sığacak en büyük ölçeği hesapla
       const scale = Math.min(ww / GAME_WIDTH, wh / GAME_HEIGHT);
 
+      const displayWidth = GAME_WIDTH * scale;
+      const displayHeight = GAME_HEIGHT * scale;
+
       const wrapper = document.getElementById('game-wrapper');
       wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      wrapper.style.width = `${displayWidth}px`;
+      wrapper.style.height = `${displayHeight}px`;
     }
 
     window.addEventListener('load', resizeGame);
